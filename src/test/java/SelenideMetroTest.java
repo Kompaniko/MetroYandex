@@ -24,4 +24,20 @@ public class SelenideMetroTest {
         // это метод Selenide, который проверяет, что найденный элемент видимый (отображается на экране).
     }
 
+    //  проверка отображения времени маршрута
+   @Test
+    public void checkRouteApproxTimeIsDisplay()  {
+        // открытие браузера и переход на страницу стенда
+        // инициализация класса
+        MetroHomePage metroPage = open("https://qa-metro.stand-2.praktikum-services.ru/",
+                MetroHomePage.class);
+        // ожидание загрузки страницы
+        metroPage.waitForLoadHomePage();
+       // выбрали Санкт-Петербург в списке городов
+       metroPage.chooseCity("Санкт-Петербург");
+        // постройка маршрута от "Невский проспект" до "Улица Дыбенко"
+        metroPage.buildRoute("Невский проспект", "Петроградская");
+        // проверка, что отображается корректное название станции начала маршрута
+       $$(byXpath("/html/body/div[3]/div/ul[2]/li/span[2]")).get(0).shouldHave(text("≈ 6 мин."));
+    }
 }

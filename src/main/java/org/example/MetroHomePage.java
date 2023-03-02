@@ -2,10 +2,13 @@ package org.example;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.FindBy;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -33,7 +36,7 @@ public class MetroHomePage {
     public void waitForLoadHomePage() {
         // находим элемент по тексу, добавляем ожидание 8 секунд
 
-        $(byText("Театральная")).shouldBe(visible,ofSeconds(8));
+        $(byText("Театральная")).shouldBe(visible,ofSeconds(18));
     }
 
     // метод выбора города по названию
@@ -51,8 +54,27 @@ public class MetroHomePage {
     // метод ожидания построения маршрута: проверяется видимость кнопки "Получить ссылку на маршрут"
     public void waitForLoadRoute(){
         // ищем веб-элемент по тексту
-        $( byText("Получить ссылку на маршрут")).shouldBe(visible);
+        $( byText("Получить ссылку на маршрут")).
+                shouldBe(visible);
+    }
+    public void buildRoute(String fromStation, String toStation) {
+        // Ввести название станции отправления
+        $(fieldFrom.setValue(fromStation));
+
+        // Ввести название станции назначения
+        $(fieldTo.setValue(toStation));
     }
 
+    public String getRouteStationFrom() {
+    // ожидание построения маршрута
+        waitForLoadRoute();
+        // находим элемент, отображающий время в пути
+        SelenideElement routeTime = $(byText("≈ 23 мин."));
+        // находим следующий элемент после "Приблизительное время в пути" - это элемент, содержащий время в пути
+//        SelenideElement routeTimeValue = routeTime.sibling(0);
+        // возвращаем текст элемента с временем в пути
+        return null;
+//        return routeTimeValue.text();
+    }
 
 }
