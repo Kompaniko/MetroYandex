@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static java.time.Duration.ofSeconds;
 
-
+// PageObject методы для класса тестирования
 public class MetroHomePage {
 
     // локатор кнопки выпадающего списка городов по имени класса
