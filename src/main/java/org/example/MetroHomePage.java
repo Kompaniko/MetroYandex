@@ -5,6 +5,8 @@ import com.codeborne.selenide.SelenideElement;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.FindBy;
 
@@ -50,6 +52,12 @@ public class MetroHomePage {
     public void setStationFrom(String stationFrom) {
         // ввод названия станции в поле ввода, затем с помощью клавищ "Вниз" и enter выбрали его в выпадающем списке
         fieldFrom.setValue(stationFrom).sendKeys(Keys.DOWN, Keys.ENTER);
+    }
+
+    // метод ввода названия станции в поле "куда"
+    public void setStationTo(String stationTo) {
+        // ввод названия станции в поле ввода, затем с помощью клавищ "Вниз" и enter выбрали его в выпадающем списке
+        fieldFrom.setValue(stationTo).sendKeys(Keys.DOWN, Keys.ENTER);
     }
     // метод ожидания построения маршрута: проверяется видимость кнопки "Получить ссылку на маршрут"
     public void waitForLoadRoute(){

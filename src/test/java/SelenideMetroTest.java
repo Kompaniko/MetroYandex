@@ -1,5 +1,8 @@
+import com.codeborne.selenide.CollectionCondition;
 import org.example.MetroHomePage;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Condition.*;
@@ -7,7 +10,6 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class SelenideMetroTest {
-
     @Test
     public void checkChooseCityDropdown(){
         // открытие браузера и переход на страницу стенда
@@ -38,6 +40,6 @@ public class SelenideMetroTest {
         // постройка маршрута от "Невский проспект" до "Улица Дыбенко"
         metroPage.buildRoute("Невский проспект", "Петроградская");
         // проверка, что отображается корректное название станции начала маршрута
-       $$(byXpath("/html/body/div[3]/div/ul[2]/li/span[2]")).get(0).shouldHave(text("≈ 6 мин."));
+       $$(byXpath("/html/body/div[3]/div/ul[2]/li/span[2]")).shouldHave(CollectionCondition.itemWithText("≈ 6 мин."));
     }
 }
